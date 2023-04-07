@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Font Awesome -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <!-- MDB -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"></script>
+    <title>MapSnap</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light index py-3"
+        style="background: radial-gradient( circle farthest-corner at 10% 20%,  rgba(37,145,251,0.98) 0.1%, rgba(0,7,128,1) 99.8% );">
+        <!-- Container wrapper -->
+        <div class="container-fluid">
+            <!-- Toggle button -->
+            <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
+                data-mdb-target="#navbarRightAlignExample" aria-controls="navbarRightAlignExample" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Navbar brand -->
+                <!-- Left links -->
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item mx-5 px-3">
+                        <a class="navbar-brand mt-2 mt-lg-0" href="{{ url_for('index') }}">
+                            <img
+                              src="{{ url_for('static', filename='images/logo.png') }}"
+                              height="40"
+                              alt="MDB Logo"
+                              loading="lazy"
+                            />
+                          </a>
+                    </li>
+                </ul>
+                <!-- Left links -->
+            </div>
+            <!-- Collapsible wrapper -->
+            <div class="collapse navbar-collapse" id="navbarRightAlignExample">
+                <!-- Left links -->
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 mx-5">
+                    <li class="nav-item px-3">
+                        <a class="nav-link text-white hover-shadow" aria-current="page"
+                            href="{{ url_for('index') }}">About</a>
+                    </li>
+                    <li class="nav-item px-3">
+                        <a class="nav-link text-white hover-shadow" href="{{ url_for('index') }}">Simulate</a>
+                    </li>
+                    <li class="nav-item px-3">
+                        <a class="nav-link text-white hover-shadow" href="{{ url_for('index') }}">Devs</a>
+                    </li>
+                </ul>
+                <!-- Left links -->
+            </div>
+            <!-- Collapsible wrapper -->
+        </div>
+        <!-- Container wrapper -->
+    </nav>
+    <div class="container index" style="padding-top: 60px;padding-left: 50px;">
+        <center>
+            <div class="mb-3 w-50">
+
+                <form class="image-upload row g-2" method="POST" action="/run" enctype="multipart/form-data">
+
+                    <input class="form-control choose-file" type="file" id="formFile" name="file" required>
+                    <center>
+                        <button type="submit" class="btn-grad-2 w-25 hover-shadow"
+                            style="margin-top: 20px; background-color:#09259A;">
+                            Run
+                        </button>
+                    </center>
+
+
+
+                </form>
+            </div>
+        </center>
+        <div class="d-flex justify-content-around">
+            {% if file_path %}
+            <div class="text-center">
+                <h3>Input</h3>
+                <img height="300rem" src="{{ url_for('static', filename='uploads/input.png') }}" class=""
+                    alt="input image">
+            </div>
+            {% endif %}
+            {% if output_path %}
+            <div class="text-center">
+                <h3>Output</h3>
+                <img height="300rem" src="{{ url_for('static', filename='output/output.png') }}" class=""
+                    alt="output image">
+            </div>
+            {% endif %}
+        </div>
+
+    </div>
+</body>
+
+</html>
