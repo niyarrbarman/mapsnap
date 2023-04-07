@@ -1,0 +1,34 @@
+.index {
+    font-family: 'Poppins', sans-serif;
+}
+
+.hover {
+    font-size: medium;
+    opacity: 100;
+}
+
+.hover:hover {
+    font-size: large;
+    opacity: 70;
+}
+
+.btn-grad-2 {
+    background: radial-gradient(circle, rgba(0,254,255,1) 0%, rgba(0,170,252,1) 0%, rgba(121,38,255,1) 100%);
+    padding: 10px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    display: block;
+    border: 0;
+    width: 80%;
+    border-radius: 30px;
+}
+
+.btn-grad-2:hover {
+    background-position: right center;
+    /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+}
