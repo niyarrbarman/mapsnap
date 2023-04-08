@@ -1,5 +1,5 @@
 from flask import Flask, redirect, render_template, request
-from utils import load_model, clear_dir, pred_read_image, mask_parse, placeMaskOnImg
+from utils import load_model, clear_dir, pred_read_image, mask_parse, placeMaskOnImg, Predict
 from imports import np, plt
 import os
 
@@ -18,9 +18,6 @@ def index():
     clear_dir(app.config['OUTPUT_FOLDER'])
     return render_template('index.html')
 
-@app.route('/')
-def about():
-    return render_template('index.html/#about')
 
 @app.route('/run', methods=['POST'])
 def image_upload():
@@ -41,9 +38,8 @@ def image_upload():
     file_path = './static/uploads/input.png'
     # Make prediction
     img = pred_read_image(file_path)
-    pred = model.predict(np.expand_dims(img, axis=0))[0] > 0.5
+    pred = Predict(model).predict(file_path)
     pred = mask_parse(pred)*255
-
     color = np.array([158, 192, 247])/255.0
     output = placeMaskOnImg(img, pred, color)
     fname = os.path.join(app.config['OUTPUT_FOLDER'], 'output.png')
