@@ -54,13 +54,13 @@
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0 mx-5">
                     <li class="nav-item px-3">
                         <a class="nav-link text-white hover-shadow" aria-current="page"
-                            href="{{ url_for('index') }}">About</a>
+                            href="#about">About</a>
                     </li>
                     <li class="nav-item px-3">
-                        <a class="nav-link text-white hover-shadow" href="{{ url_for('index') }}">Simulate</a>
+                        <a class="nav-link text-white hover-shadow" href="#Simulation">Simulate</a>
                     </li>
                     <li class="nav-item px-3">
-                        <a class="nav-link text-white hover-shadow" href="{{ url_for('index') }}">Devs</a>
+                        <a class="nav-link text-white hover-shadow" href="#devs">Devs</a>
                     </li>
                 </ul>
                 <!-- Left links -->
@@ -69,15 +69,36 @@
         </div>
         <!-- Container wrapper -->
     </nav>
+
     <div class="container index" style="padding-top: 60px;padding-left: 50px;">
+        <section id="about">
+            <div class="my-3"> 
+                <center>
+                    <h1>
+                        Global Landslide Susceptibility Map
+                        <img src="{{ url_for('static', filename='images/landslide.png') }}" alt="" class="my-5">
+                    </h1>
+                </center> 
+                
+                Welcome to MapSnap, the ultimate tool for detecting landslides using satellite imagery and advanced deep learning technology. With our Segformer model, we analyze images pixel by pixel to quickly and accurately identify the areas affected. This means emergency responders and disaster management teams can act fast and potentially save lives.
+            </div>
+            <div class="my-3 mb-10">
+                MapSnap utilizes advanced deep learning technology and satellite imagery to quickly and accurately detect natural disasters. The core of this technology is the Segformer model, which analyzes images pixel by pixel to identify and segment affected areas. The model is trained on large datasets to recognize the unique features of various natural disasters, allowing it to effectively identify and segment affected areas in satellite imagery.
+    
+    When a disaster occurs, MapSnap's user-friendly interface allows emergency responders and disaster management teams to quickly input satellite imagery and receive detailed reports of affected areas. This provides essential information for prompt and effective response to disasters, potentially saving lives.
+            </div>
+        </section>
+        <section id="Simulation">
+            <h1 class="my-5 text-center">Simulator</h1>
         <center>
-            <div class="mb-3 w-50">
+            
+            <div class="mb-3 w-50 my-5">
 
                 <form class="image-upload row g-2" method="POST" action="/run" enctype="multipart/form-data">
 
                     <input class="form-control choose-file" type="file" id="formFile" name="file" required>
                     <center>
-                        <button type="submit" class="btn-grad-2 w-25 hover-shadow"
+                        <button type="submit" class="btn-grad-2 w-25 hover-shadow my-3"
                             style="margin-top: 20px; background-color:#09259A;">
                             Run
                         </button>
@@ -88,24 +109,102 @@
                 </form>
             </div>
         </center>
+        
+
+       
         <div class="d-flex justify-content-around">
             {% if file_path %}
             <div class="text-center">
-                <h3>Input</h3>
+                <h3>Input Image</h3>
                 <img height="300rem" src="{{ url_for('static', filename='uploads/input.png') }}" class=""
                     alt="input image">
             </div>
             {% endif %}
             {% if output_path %}
             <div class="text-center">
-                <h3>Output</h3>
+                <h3>Predicted Mask</h3>
                 <img height="300rem" src="{{ url_for('static', filename='output/output.png') }}" class=""
                     alt="output image">
             </div>
             {% endif %}
         </div>
+        {% if area %}
+        <div class="d-flex justify-content-around my-5">
+        
+            <div class="text-center">
+                <h5>Percentage of affected area : {{'%0.2f' % area|float}}%</h5>
+            </div>
+        
+        </div>
+        {% endif %}
+    </section>
 
+    <section id="devs" >
+        <div class="my-5"   >
+            <h1 class="my-5 text-center">
+                    Developers
+                </h1>
+            <div class="d-flex justify-content-evenly my-5">
+                <div class="col-md-3 dev-person my-3">
+                    <center>
+                        <!-- <img class="img-dev img-fluid" src="{{ url_for('static', filename='images/niyar.jpeg') }}" alt="" style="height: 200px; width: 180px;; border-radius: 30px;"> -->
+            
+                    <div class="dev-info dev-person my-4">
+            
+                      <h3 style="font-weight: bold;">Niyar R Barman</h3>
+                      <p>2nd year ECE, NIT Silchar </p>
+                        <a href="https://www.linkedin.com/in/niyar"><i class="fab fa-lg fa-linkedin-in" style="margin-right: 10px;"></i></a>
+                        <a href="https://github.com/niyarrbarman"><i class="fab fa-lg fa-github"></i></a>
+                      
+                    </div>
+                  </div>
+                    </center>
+                      
+                  <div class="col-md-3 dev-person my-3">
+
+                    <center>
+                        <!-- <img class="img-dev img-fluid" src="{{ url_for('static', filename='images/abhinab.jpeg') }}" alt="" style="height: 200px; width: 180px; border-radius: 30px;">
+             -->
+                    <div class="dev-info dev-person my-4">
+            
+                      <h3 style="font-weight: bold;">Abhinab Handique</h3>
+                      <p>2nd year EIE, NIT Silchar </p>
+                      <a href="https://www.linkedin.com/in/abhinab-handique-2baa22200/"><i class="fab fa-lg fa-linkedin-in" style="margin-right: 10px;"></i></a>
+                        <a href="https://github.com/abhihandique2002"><i class="fab fa-lg fa-github"></i></a>
+                    </div>
+                    </center>
+                      
+                  </div>
+            </div>
+        </div>
+    </section>
     </div>
+    <footer class="text-center text-white bg-primary">
+        <!-- Grid container -->
+        <div class="container p-4 pb-0">
+          <!-- Section: Social media -->
+          <section class="mb-4">
+           
+      
+            <!-- Github -->
+            <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/niyarrbarman/mapsnap" role="button"
+              ><i class="fab fa-github"></i
+            ></a>
+          </section>
+          <!-- Section: Social media -->
+        </div>
+        <!-- Grid container -->
+      
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+          © 2023 Copyright:
+          <a class="text-white" href="https://mdbootstrap.com/">MapSnap</a>
+        </div>
+        <!-- Copyright -->
+      </footer>
+
+    
+
 </body>
 
 </html>
