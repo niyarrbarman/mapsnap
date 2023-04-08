@@ -21,6 +21,14 @@ def load_model():
         ignore_mismatched_sizes=True   
     )
     model.load_weights("model-weights/segformer-5-b1.h5")
+
+    '''
+    Use this if you dont have access to model-weights;
+    use the following lines, and comment the above
+
+    model_checkpoint = "niyar/segformer-finetuned-landslide"
+    model = TFSegformerForSemanticSegmentation.from_pretrained()
+    '''
     return model
 
 class Predict:
@@ -70,16 +78,11 @@ def clear_dir(PATH):
     for filename in filenames:
         os.remove(os.path.join(PATH, filename))
 
+def area(image_array):
+    white_pixels = np.sum(image_array == 1)  
+    return (white_pixels / 16384) * 100
+
 
 if __name__ == '__main__':
 
-    model = load_model()
-    model.summary()
-    output = predict('static/uploads/input.png')
-    img = pred_read_image('static/uploads/input.png')
-    color = np.array([158, 192, 247])/255.0
-    pred = mask_parse(output)*255
-
-    y = placeMaskOnImg(img, pred, color)
-    plt.imsave(fname='output.png', arr=y)
-    print("DOne")
+    pass
